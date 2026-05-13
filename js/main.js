@@ -48,7 +48,7 @@ function initReelsDots() {
   function startAuto() {
     autoTimer = setInterval(() => {
       if (!userScrolling) goTo(current + 1);
-    }, 3000);
+    }, 5000);
   }
 
   track.addEventListener('scroll', () => {
@@ -62,11 +62,8 @@ function initReelsDots() {
   }, { passive: true });
 
   track.addEventListener('touchend', () => {
-    setTimeout(() => {
-      userScrolling = false;
-      current = getActiveIndex();
-      startAuto();
-    }, 1200);
+    userScrolling = false;
+    current = getActiveIndex();
   }, { passive: true });
 
   startAuto();
