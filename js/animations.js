@@ -28,9 +28,26 @@ export function initScrollReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
 
   $$('.reveal').forEach(el => observer.observe(el));
+
+  // Galeria imagens fade-in com motion leve
+  const imgObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.style.transitionDelay = `${i * 60}ms`;
+        el.classList.add('is-visible');
+        imgObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  $$('.galeria__item').forEach(el => {
+    el.classList.add('reveal');
+    imgObserver.observe(el);
+  });
 }
 
 export function initStaggerReveal() {
@@ -148,20 +165,34 @@ export function initFaq() {
 
 export function initMobileMenu() {
   const toggle = document.querySelector('.header__mobile-toggle');
-  const menu = document.querySelector('.header__mobile-menu');
+  const menu = document.querySelector('.fullscreen-menu');
   if (!toggle || !menu) return;
 
+  function closeMenu() {
+    toggle.classList.remove('is-open');
+    menu.classList.remove('is-open');
+    menu.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  function openMenu() {
+    toggle.classList.add('is-open');
+    menu.classList.add('is-open');
+    menu.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
   toggle.addEventListener('click', () => {
-    const isOpen = toggle.classList.toggle('is-open');
-    menu.classList.toggle('is-open', isOpen);
-    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.classList.contains('is-open') ? closeMenu() : openMenu();
   });
 
   menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      toggle.classList.remove('is-open');
-      menu.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
   });
 }

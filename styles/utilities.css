@@ -10,16 +10,16 @@
 }
 
 .section--alt {
-  background-color: var(--color-bg-alt);
+  background: linear-gradient(180deg, #FFF9DC 0%, #FFFEF5 100%);
 }
 
 .section--dark {
-  background-color: var(--color-bg-dark);
+  background: linear-gradient(160deg, #1C1400 0%, #251B00 60%, #1A1200 100%);
   color: white;
 }
 
 .section--primary {
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, #E8B800 0%, #F5CE00 45%, #D4A600 100%);
   color: white;
 }
 

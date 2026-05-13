@@ -80,18 +80,239 @@
   animation: none;
 }
 
-/* Microinterações globais em links e cards */
-.feature-card,
-.produto-card,
-.problema-card,
-.depoimento-card,
-.acessorio-item,
+/* ========================
+   CTA PULSE GLOW
+======================== */
+@keyframes ctaGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(214, 48, 48, 0), 0 4px 20px rgba(214, 48, 48, 0.35); }
+  50%       { box-shadow: 0 0 0 8px rgba(214, 48, 48, 0.12), 0 8px 32px rgba(214, 48, 48, 0.5); }
+}
+
+.btn--primary {
+  animation: ctaGlow 2.8s ease-in-out infinite;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
+}
+
+.btn--primary:hover {
+  animation: none;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(214, 48, 48, 0.45);
+}
+
+.btn--primary:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(214, 48, 48, 0.3);
+}
+
+/* ========================
+   CARDS HOVER SUAVE
+======================== */
+.feature-card {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              background-color 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+.feature-card:hover .feature-card__icon {
+  transform: scale(1.15) rotate(-4deg);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.feature-card__icon {
+  transition: transform 0.3s ease;
+}
+
+.depoimento-card {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+.depoimento-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-lg);
+}
+
+.problema-card {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              border-color 0.2s ease;
+}
+
+.problema-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.acessorio-item {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease;
+}
+
+.acessorio-item:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* ========================
+   IMAGEM HERO FADE-IN MOTION
+======================== */
+@keyframes heroImgIn {
+  0%   { opacity: 0; transform: translateY(18px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero__photo {
+  animation: heroImgIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+/* ========================
+   GALERIA HOVER
+======================== */
+.galeria__item {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+.galeria__item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.15);
+}
+
+/* ========================
+   BOTÕES MICRO INTERAÇÃO
+======================== */
+.btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn--outline-white:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255,255,255,0.15);
+}
+
+/* ========================
+   LINKS NAV MICRO
+======================== */
+.header__nav-link {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.header__nav-link:hover {
+  transform: translateY(-1px);
+}
+
+/* ========================
+   STEP HOVER
+======================== */
 .step {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.step:hover {
+  transform: translateY(-4px);
+}
+
+.step:hover .step__number {
+  transform: scale(1.1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.step__number {
+  transition: transform 0.3s ease;
+}
+
+/* will-change para performance */
+.feature-card,
+.depoimento-card,
+.problema-card,
+.acessorio-item,
+.galeria__item,
+.step,
+.btn {
   will-change: transform;
 }
 
-.produto-card:focus-within,
-.feature-card:focus-within {
+.feature-card:focus-within,
+.produto-card:focus-within {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* ========================
+   ICON GLOW AMBIENT
+======================== */
+.feature-card:hover .feature-card__icon {
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+.acessorio-item:hover .acessorio-item__icon {
+  box-shadow: 0 0 16px rgba(232, 184, 0, 0.35);
+}
+
+/* ========================
+   SECTION DIVIDER GLOW
+======================== */
+.section {
+  position: relative;
+}
+
+.section--alt::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232,184,0,0.3), transparent);
+}
+
+/* ========================
+   HEADER GLOW SCROLLED
+======================== */
+.header--scrolled {
+  box-shadow: 0 1px 0 rgba(232,184,0,0.1),
+              0 4px 24px rgba(232,184,0,0.06),
+              0 8px 40px rgba(0,0,0,0.04);
+}
+
+/* ========================
+   CARD GLASS SHIMMER
+======================== */
+.feature-card::before,
+.depoimento-card::before,
+.problema-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card,
+.depoimento-card,
+.problema-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover::before,
+.depoimento-card:hover::before,
+.problema-card:hover::before {
+  opacity: 1;
 }
