@@ -1,0 +1,46 @@
+:root {
+  --color-primary: #E8B800;
+  --color-primary-light: #F5CE00;
+  --color-accent: #D63030;
+  --color-accent-warm: #FF8C42;
+  --color-green: #3DAA50;
+  --color-blue: #4A8FD4;
+
+  --color-bg: #FFFEF5;
+  --color-bg-alt: #FFF9DC;
+  --color-bg-dark: #1C1400;
+  --color-text: #1C1408;
+  --color-text-muted: #6B5C30;
+  --color-border: rgba(232, 184, 0, 0.2);
+
+  --shadow-sm: 0 2px 8px rgba(232, 184, 0, 0.10);
+  --shadow-md: 0 8px 24px rgba(232, 184, 0, 0.15);
+  --shadow-lg: 0 16px 48px rgba(232, 184, 0, 0.18);
+
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 40px;
+  --space-xl: 60px;
+  --space-2xl: 80px;
+
+  --font-display: 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 32px;
+  --radius-pill: 999px;
+
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --container-max: 1200px;
+  --container-padding: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-padding: var(--space-md);
+  }
+}
