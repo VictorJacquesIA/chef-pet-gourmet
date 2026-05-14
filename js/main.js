@@ -20,6 +20,9 @@ function initReelsDots() {
   let current = 0;
   let autoTimer = null;
   let userScrolling = false;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let scrollDir = null;
 
   function getActiveIndex() {
     const center = track.scrollLeft + track.clientWidth / 2;
@@ -46,6 +49,7 @@ function initReelsDots() {
   }
 
   function startAuto() {
+    clearInterval(autoTimer);
     autoTimer = setInterval(() => {
       if (!userScrolling) goTo(current + 1);
     }, 5000);
@@ -56,14 +60,32 @@ function initReelsDots() {
     updateDots(current);
   }, { passive: true });
 
-  track.addEventListener('touchstart', () => {
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    scrollDir = null;
     userScrolling = true;
     clearInterval(autoTimer);
   }, { passive: true });
 
+  track.addEventListener('touchmove', (e) => {
+    if (!scrollDir) {
+      const dx = Math.abs(e.touches[0].clientX - touchStartX);
+      const dy = Math.abs(e.touches[0].clientY - touchStartY);
+      if (dx > 6 || dy > 6) {
+        scrollDir = dx >= dy ? 'x' : 'y';
+      }
+    }
+    if (scrollDir === 'x') {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
   track.addEventListener('touchend', () => {
     userScrolling = false;
+    scrollDir = null;
     current = getActiveIndex();
+    startAuto();
   }, { passive: true });
 
   startAuto();
