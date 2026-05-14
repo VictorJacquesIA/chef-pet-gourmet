@@ -361,8 +361,7 @@
   margin-inline: calc(-1 * var(--container-padding));
   padding-top: 12px;
   padding-bottom: 4px;
-  touch-action: pan-x;
-  overscroll-behavior: contain;
+  overscroll-behavior-x: contain;
 }
 
 .solucao__features::-webkit-scrollbar { display: none; }
@@ -949,8 +948,7 @@
   padding-bottom: 4px;
   padding-inline: var(--container-padding);
   margin-inline: calc(-1 * var(--container-padding));
-  touch-action: pan-x;
-  overscroll-behavior: contain;
+  overscroll-behavior-x: contain;
 }
 
 .acessorios__items::-webkit-scrollbar {
