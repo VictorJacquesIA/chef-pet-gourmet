@@ -91,6 +91,25 @@ function initReelsDots() {
   startAuto();
 }
 
+function addHorizontalLock(el) {
+  if (!el) return;
+  let startX = 0, startY = 0, dir = null;
+  el.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    dir = null;
+  }, { passive: true });
+  el.addEventListener('touchmove', (e) => {
+    if (!dir) {
+      const dx = Math.abs(e.touches[0].clientX - startX);
+      const dy = Math.abs(e.touches[0].clientY - startY);
+      if (dx > 6 || dy > 6) dir = dx >= dy ? 'x' : 'y';
+    }
+    if (dir === 'x') e.preventDefault();
+  }, { passive: false });
+  el.addEventListener('touchend', () => { dir = null; }, { passive: true });
+}
+
 function init() {
   initHeaderScroll();
   initMobileMenu();
@@ -102,6 +121,7 @@ function init() {
   initTracking();
   initForms();
   initReelsDots();
+  addHorizontalLock(document.getElementById('acessoriosTrack'));
 }
 
 if (document.readyState === 'loading') {
