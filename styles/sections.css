@@ -362,6 +362,8 @@
   padding-top: 12px;
   padding-bottom: 4px;
   overscroll-behavior-x: contain;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .solucao__features::-webkit-scrollbar { display: none; }
@@ -949,6 +951,8 @@
   padding-inline: var(--container-padding);
   margin-inline: calc(-1 * var(--container-padding));
   overscroll-behavior-x: contain;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .acessorios__items::-webkit-scrollbar {
