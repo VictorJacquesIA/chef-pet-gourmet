@@ -354,12 +354,15 @@
   flex-direction: row;
   gap: 14px;
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-inline: var(--container-padding);
   margin-inline: calc(-1 * var(--container-padding));
   padding-bottom: 4px;
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
 }
 
 .solucao__features::-webkit-scrollbar { display: none; }
