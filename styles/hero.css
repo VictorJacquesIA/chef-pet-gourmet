@@ -298,23 +298,37 @@
     align-items: flex-start;
     max-width: 580px;
     margin-top: 0;
+    gap: var(--space-md);
   }
 
   .hero__subheadline {
     text-align: left;
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    max-width: 520px;
   }
 
   .hero__badges {
     justify-content: flex-start;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .hero__badge {
+    font-size: 0.78rem;
+    padding: 6px 14px;
   }
 
   .hero__actions {
     flex-direction: row;
     align-items: center;
+    margin-top: 4px;
+    gap: var(--space-sm);
   }
 
   .hero__headline {
-    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    letter-spacing: -2px;
+    line-height: 1.08;
   }
 
   /* Imagem fica à direita — grande e dominante */
