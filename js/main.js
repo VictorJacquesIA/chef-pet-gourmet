@@ -22,6 +22,7 @@ function initReelsDots() {
   let userScrolling = false;
   let touchStartX = 0;
   let touchStartY = 0;
+  let touchLastX = 0;
   let scrollDir = null;
 
   function getActiveIndex() {
@@ -61,7 +62,7 @@ function initReelsDots() {
   }, { passive: true });
 
   track.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
+    touchStartX = touchLastX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     scrollDir = null;
     userScrolling = true;
@@ -69,15 +70,17 @@ function initReelsDots() {
   }, { passive: true });
 
   track.addEventListener('touchmove', (e) => {
+    const cx = e.touches[0].clientX;
+    const cy = e.touches[0].clientY;
     if (!scrollDir) {
-      const dx = Math.abs(e.touches[0].clientX - touchStartX);
-      const dy = Math.abs(e.touches[0].clientY - touchStartY);
-      if (dx > 6 || dy > 6) {
-        scrollDir = dx >= dy ? 'x' : 'y';
-      }
+      const dx = Math.abs(cx - touchStartX);
+      const dy = Math.abs(cy - touchStartY);
+      if (dx > 6 || dy > 6) scrollDir = dx >= dy ? 'x' : 'y';
     }
     if (scrollDir === 'x') {
       e.preventDefault();
+      track.scrollLeft += touchLastX - cx;
+      touchLastX = cx;
     }
   }, { passive: false });
 
@@ -93,19 +96,25 @@ function initReelsDots() {
 
 function addHorizontalLock(el) {
   if (!el) return;
-  let startX = 0, startY = 0, dir = null;
+  let startX = 0, startY = 0, lastX = 0, dir = null;
   el.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
+    startX = lastX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
     dir = null;
   }, { passive: true });
   el.addEventListener('touchmove', (e) => {
+    const cx = e.touches[0].clientX;
+    const cy = e.touches[0].clientY;
     if (!dir) {
-      const dx = Math.abs(e.touches[0].clientX - startX);
-      const dy = Math.abs(e.touches[0].clientY - startY);
+      const dx = Math.abs(cx - startX);
+      const dy = Math.abs(cy - startY);
       if (dx > 6 || dy > 6) dir = dx >= dy ? 'x' : 'y';
     }
-    if (dir === 'x') e.preventDefault();
+    if (dir === 'x') {
+      e.preventDefault();
+      el.scrollLeft += lastX - cx;
+      lastX = cx;
+    }
   }, { passive: false });
   el.addEventListener('touchend', () => { dir = null; }, { passive: true });
 }
