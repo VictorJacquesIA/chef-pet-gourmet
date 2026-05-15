@@ -144,8 +144,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(232,69,106,0.18) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 50%, rgba(255,140,66,0.10) 0%, transparent 60%);
+    radial-gradient(ellipse at 20% 50%, rgba(232,184,0,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(232,184,0,0.12) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -174,7 +174,7 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(232,69,106,0.6);
+  color: rgba(232,184,0,0.75);
 }
 
 .momento-uau__headline {
@@ -194,7 +194,7 @@
 }
 
 .momento-uau__sub strong {
-  color: white;
+  color: #E8B800;
   font-weight: 700;
 }
 
