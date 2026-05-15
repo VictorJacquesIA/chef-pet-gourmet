@@ -10,4 +10,4 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-Sitemap: https://chefpetgourmet.com.br/sitemap.xml
+Sitemap: https://www.chefpetgourmet.com.br/sitemap.xml
